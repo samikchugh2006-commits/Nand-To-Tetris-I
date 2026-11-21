@@ -1,0 +1,23 @@
+LAB 4 Q3 - ALU flags and conditional jumps
+
+The Hack ALU provides:
+zr = 1 exactly when the 16-bit ALU output is 0.
+ng = 1 when the output's most significant bit is 1 (two's-complement negative interpretation).
+
+Conditional jump decoding:
+JGT (jump field 001): jump when ng=0 and zr=0.
+JEQ (010): jump when zr=1.
+JGE (011): jump when ng=1 OR zr=1.
+JLT (100): jump when ng=1.
+JNE (101): jump when zr=0.
+JLE (110): jump when ng=1 OR zr=1.
+JMP (111): unconditional jump.
+
+Examples:
+D=5; D;JGT -> jump is taken.
+D=0; D;JEQ -> jump is taken.
+D=-1; D;JLT -> jump is taken.
+
+If zr is stuck low, JEQ can never branch and JNE may branch incorrectly.
+If ng is inverted, JLT/JGT decisions are reversed for negative/positive outputs.
+If jump bits are mapped incorrectly, loops and if/else control flow may fail or run forever.

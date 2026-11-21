@@ -1,0 +1,29 @@
+LAB 4 WAVEFORM TRACE - illustrative signal schedule
+The following table traces the expected signal and register changes for the sample program.
+Hack CPU completes one instruction per clock cycle. Fetch/decode/execute are combinational activities within the instruction cycle; state changes occur at the active clock edge.
+
+Sample program:
+0: @2       (A-instruction)
+1: D=A      (C-instruction)
+2: @3       (A-instruction)
+3: D=D+A    (C-instruction)
+4: @0       (A-instruction)
+5: M=D      (C-instruction)
+
+Cycle | PC before edge | Instruction | Key control / ALU activity | State update at edge
+1 | 0 | @2    | A-instruction selected; loadA=1 | A=2, PC=1
+2 | 1 | D=A   | ALU computes A; dest=D | D=2, PC=2
+3 | 2 | @3    | A-instruction selected; loadA=1 | A=3, PC=3
+4 | 3 | D=D+A | ALU computes D+A=5; dest=D | D=5, PC=4
+5 | 4 | @0    | A-instruction selected; loadA=1 | A=0, PC=5
+6 | 5 | M=D   | writeM=1, outM=5, addressM=0 | RAM[0]=5, PC=6
+
+Signal meanings:
+- instruction[15]=0: A-instruction; instruction[15]=1: C-instruction.
+- instruction[12] selects A (0) or inM (1) for ALU y input.
+- ALU zr=1 when output is zero; ng=1 when output is negative (most significant bit 1).
+- writeM=1 only for a C-instruction whose destination includes M.
+- addressM is A[0..14]; outM is the ALU result.
+
+Clock interpretation:
+During a cycle, ROM32K presents the instruction addressed by PC. The CPU decodes and computes combinational outputs. At the clock edge, A, D, PC, and memory update according to their load controls. Do not describe fetch, decode, and execute as three separate clock cycles in the standard Hack CPU.

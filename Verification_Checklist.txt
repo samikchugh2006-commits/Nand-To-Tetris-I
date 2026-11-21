@@ -1,0 +1,8 @@
+LAB 4 - Verification checklist
+Verification checklist for the Hardware Simulator and CPU Emulator.
+
+1. Load KeyboardToScreen.asm in the CPU Emulator. Set a keyboard value, step the program, and inspect RAM[0] (SP), stack RAM[256], and SCREEN address 16384.
+2. Load the sample six-instruction program and record PC, instruction, A, D, ALU output, zr, ng, writeM, addressM, outM on every cycle.
+3. Check that D=0 with JEQ takes the branch; D=1 with JGT takes the branch; D=-1 with JLT takes the branch.
+4. In Hardware Simulator, load Computer.hdl and use the course-provided test ROMs. Inspect the waveform viewer across at least five clock cycles.
+5. Record the test file names, results and any observed discrepancies.

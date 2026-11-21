@@ -1,0 +1,23 @@
+LAB 4 Q5 - Toolchain comparison
+
+Hack/Nand2Tetris path:
+Hack .asm source
+    -> Hack Assembler
+    -> 16-bit Hack machine code (.hack)
+    -> loaded into instruction ROM / CPU Emulator
+    -> execution on Hack CPU
+
+Typical C toolchain:
+C source (.c)
+    -> Preprocessor
+    -> Compiler (C to assembly/object code)
+    -> Assembler (assembly to object file)
+    -> Linker (combines object files and libraries)
+    -> Executable
+    -> Loader (places executable in memory and starts it)
+    -> CPU executes machine instructions
+
+Roles:
+Assembler: translates symbolic assembly mnemonics into machine instructions.
+Linker: resolves external symbols and combines object files/libraries (normally absent from the simple Hack assembler workflow).
+Loader: loads an executable into memory and transfers control to its entry point.
