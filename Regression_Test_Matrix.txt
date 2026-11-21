@@ -1,0 +1,17 @@
+LAB 3 - Suggested regression test matrix
+Regression test cases for the CPU and Computer implementation.
+
+1. A-instruction load: instruction @21 -> A becomes 21 after clock edge; PC increments.
+2. C-instruction D destination: D=A -> D receives current A value.
+3. ALU addition: D=D+A -> D receives 16-bit sum.
+4. M destination: M=D -> writeM asserted; outM equals D; addressM equals A[0..14].
+5. JGT taken: positive ALU result with JGT -> PC loads A.
+6. JGT not taken: zero or negative ALU result with JGT -> PC increments.
+7. JEQ taken: zr=1 with JEQ -> PC loads A.
+8. JLT taken: ng=1 with JLT -> PC loads A.
+9. Reset: reset=1 -> PC becomes 0 at clock edge.
+10. Computer integration: ROM instruction fetch, CPU execution, and Memory write/read path operate together.
+
+Suggested simulator tests:
+- Run CPU.tst / CPU-external.tst if supplied with your course bundle.
+- Run ComputerAdd.tst, ComputerMax.tst, ComputerRect.tst or the exact ROM tests provided by your instructor.

@@ -1,0 +1,34 @@
+Lab 3 Q2 - Hand encoding examples
+
+A-instruction format:
+0 vvvvvvvvvvvvvvv  (15-bit non-negative value)
+
+Example 1:
+Assembly: @21
+Binary:   0000000000010101
+Breakdown: opcode=0, value=000000000010101 (decimal 21)
+
+C-instruction format:
+111 a c1c2c3c4c5c6 d1d2d3 j1j2j3
+
+Example 2:
+Assembly: D=A
+Binary:   1110110000010000
+Breakdown:
+opcode=111
+a=0
+comp=110000 (A)
+dest=010 (D)
+jump=000
+
+Example 3:
+Assembly: D=D+A
+Binary:   1110000010010000
+Breakdown:
+opcode=111
+a=0
+comp=000010 (D+A)
+dest=010 (D)
+jump=000
+
+Note: The six-bit comp field above follows the standard Hack instruction encoding.
